@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "digital_resources:blank_module"
+    },
+    {
+      "item": "digital_resources:electrum_data_shard"
+    }
+  ],
+  "result": {
+    "item": "digital_resources:electrum_module"
+  }
+}

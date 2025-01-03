@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": [],
+    "B": {
+      "item": "digital_resources:upgrade"
+    }
+  },
+  "pattern": [
+    "###",
+    "#B#",
+    "###"
+  ],
+  "result": {
+    "item": "digital_resources:energy_upgrade"
+  },
+  "show_notification": true
+}

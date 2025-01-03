@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "digital_resources:ender_pearl_dust"
+    }
+  ],
+  "result": {
+    "item": "digital_resources:logic_blend"
+  }
+}

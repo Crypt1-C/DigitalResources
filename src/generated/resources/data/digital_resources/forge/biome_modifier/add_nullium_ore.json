@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": "digital_resources:end_sapphire_ore_placed",
+  "step": "underground_ores"
+}

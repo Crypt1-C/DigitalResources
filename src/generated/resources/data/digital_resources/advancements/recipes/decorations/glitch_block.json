@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ecliptium": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "digital_resources:ecliptium_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_exonull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "digital_resources:exonull_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "digital_resources:glitch_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_exonull",
+      "has_ecliptium",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "digital_resources:glitch_block"
+    ]
+  },
+  "sends_telemetry_event": false
+}

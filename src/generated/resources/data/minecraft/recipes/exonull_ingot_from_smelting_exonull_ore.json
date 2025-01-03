@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 250,
+  "experience": 0.8,
+  "group": "exonull",
+  "ingredient": {
+    "item": "digital_resources:exonull_ore"
+  },
+  "result": "digital_resources:exonull_ingot"
+}
