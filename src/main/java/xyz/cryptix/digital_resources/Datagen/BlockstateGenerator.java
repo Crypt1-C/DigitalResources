@@ -25,6 +25,7 @@ public class BlockstateGenerator extends BlockStateProvider {
         generateBlockModel(BlockRegistry.RAW_EXONULL_BLOCK);
         generateBlockModel(BlockRegistry.ENERGEX_BLOCK);
         generateBlockModel(BlockRegistry.ECLIPTIUM_BLOCK);
+        generateBlockModel(BlockRegistry.LOGISTEEL_BLOCK);
         blockWithExistingModel(BlockRegistry.GLITCH_BLOCK);
     }
 

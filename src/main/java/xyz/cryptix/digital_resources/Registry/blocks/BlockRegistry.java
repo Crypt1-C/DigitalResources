@@ -35,6 +35,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> ECLIPTIUM_BLOCK = registerBlock("ecliptium_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.LODESTONE).strength(2.4F, 2.0F)));
     public static final RegistryObject<Block> ENERGEX_BLOCK = registerBlock("energex_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST).emissiveRendering((pState, pLevel, pPos) -> true).lightLevel(blockState -> 10)));
     public static final RegistryObject<Block> GLITCH_BLOCK = registerBlock("glitch_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).emissiveRendering((pState, pLevel, pPos) -> true).lightLevel(blockState -> 15)));
+    public static final RegistryObject<Block> LOGISTEEL_BLOCK = registerBlock("logisteel_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

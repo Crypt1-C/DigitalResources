@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "digital_resources:block/raw_exonull_block"
-  }
-}

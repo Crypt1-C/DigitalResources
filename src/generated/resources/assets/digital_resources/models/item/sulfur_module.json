@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "digital_resources:item/module",
-    "layer1": "digital_resources:item/resources/crystal"
-  }
-}

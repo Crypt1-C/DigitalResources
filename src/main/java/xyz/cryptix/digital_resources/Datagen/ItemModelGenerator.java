@@ -7,11 +7,11 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
-import xyz.cryptix.digital_resources.Common.item.ModuleItem;
+import xyz.cryptix.digital_resources.Common.item.ProgramItem;
 import xyz.cryptix.digital_resources.DigitalResources;
 import xyz.cryptix.digital_resources.Registry.item.DataShardRegistry;
 import xyz.cryptix.digital_resources.Registry.item.ItemRegistry;
-import xyz.cryptix.digital_resources.Registry.item.ModuleRegistry;
+import xyz.cryptix.digital_resources.Registry.item.ProgramRegistry;
 import xyz.cryptix.digital_resources.Registry.item.UpgradeRegistry;
 
 public class ItemModelGenerator extends ItemModelProvider {
@@ -21,7 +21,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        ModuleRegistry.MODULES.forEach(this::moduleItem);
+        ProgramRegistry.PROGRAMS.forEach(this::programItem);
         ItemRegistry.ITEMS.getEntries().forEach(this::simpleItem);
         UpgradeRegistry.UPGRADES_REGISTRY.getEntries().forEach(this::upgradeItem);
         DataShardRegistry.DATA_SHARDS_REGISTRY.getEntries().forEach(this::dataShardItem);
@@ -33,10 +33,8 @@ public class ItemModelGenerator extends ItemModelProvider {
     }
 
     private void upgradeItem(RegistryObject<Item> pItem) {
-        String item_name = pItem.getId().getPath().replace("_upgrade","");
         withExistingParent(pItem.getId().getPath(), mcLoc("item/generated"))
-                .texture("layer0", modLoc("item/upgrades/upgrade"))
-                .texture("layer1", modLoc(String.format("item/upgrades/%s", item_name)));
+                .texture("layer0", modLoc("item/upgrades/" + pItem.getId().getPath()));
     }
 
     private void dataShardItem(RegistryObject<Item> pItem) {
@@ -44,16 +42,15 @@ public class ItemModelGenerator extends ItemModelProvider {
                 .texture("layer0", modLoc("item/blank_data_shard"));
     }
 
-    private void moduleItem(ModuleItem pItem) {
-        String module_name = String.format("%s_module", pItem.getResourceName());
-        if (pItem == ModuleRegistry.BLANK_MODULE.get()) {
+    private void programItem(ProgramItem pItem) {
+        String module_name = String.format("%s_program", pItem.getResourceName());
+        if (pItem == ProgramRegistry.UNINITIALIZED_PROGRAM.get()) {
             withExistingParent(module_name, mcLoc("item/generated"))
-                    .texture("layer0", modLoc("item/module"));
+                    .texture("layer0", modLoc("item/program_base"));
         } else {
-            String resource_type = pItem.getResourceType().getName();
             withExistingParent(module_name, mcLoc("item/generated"))
-                    .texture("layer0", modLoc("item/module"))
-                    .texture("layer1", modLoc(String.format("item/resources/%s", resource_type)));
+                    .texture("layer0", modLoc("item/program_base"))
+                    .texture("layer1", modLoc("item/program_data"));
         }
     }
 

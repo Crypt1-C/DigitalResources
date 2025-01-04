@@ -19,6 +19,7 @@ public class ItemRegistry {
 
     // Items
     public static final RegistryObject<Item> EXONULL_INGOT = ITEMS.register("exonull_ingot", () -> new Item(DRPropreties.MISC_PROPRETIES));
+    public static final RegistryObject<Item> EXONULL_DUST = ITEMS.register("exonull_dust", () -> new Item(DRPropreties.MISC_PROPRETIES));
 
     public static final RegistryObject<Item> RAW_EXONULL = ITEMS.register("raw_exonull", () -> new Item(DRPropreties.MISC_PROPRETIES));
 
@@ -33,6 +34,8 @@ public class ItemRegistry {
 
     // MISC
     public static final RegistryObject<Item> ENDER_PEARL_DUST = ITEMS.register("ender_pearl_dust", () -> new Item(DRPropreties.MISC_PROPRETIES));
+    public static final RegistryObject<Item> COPPER_DUST = ITEMS.register("copper_dust", () -> new Item(DRPropreties.MISC_PROPRETIES));
+    public static final RegistryObject<Item> GOLD_DUST = ITEMS.register("gold_dust", () -> new Item(DRPropreties.MISC_PROPRETIES));
 
     @SuppressWarnings("unused")
     public static List<BlockItem> getAllBlockItems() {
@@ -42,7 +45,7 @@ public class ItemRegistry {
     public static void register(IEventBus eventBus) {
         DataShardRegistry.register(eventBus);
         UpgradeRegistry.register(eventBus);
-        ModuleRegistry.register(eventBus);
+        ProgramRegistry.register(eventBus);
         ITEMS.register(eventBus);
         BLOCK_ITEMS.register(eventBus);
     }

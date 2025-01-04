@@ -6,6 +6,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -14,38 +15,30 @@ import org.apache.commons.lang3.text.WordUtils;
 import org.jetbrains.annotations.Nullable;
 import xyz.cryptix.digital_resources.API.DResource;
 import xyz.cryptix.digital_resources.API.ResourceType;
-import xyz.cryptix.digital_resources.Util.DRPropreties;
 import xyz.cryptix.digital_resources.Util.DRStyles;
 
 import java.util.List;
+import java.util.Optional;
 
-public class DataShardItem extends Item implements ItemColor {
-
+public class ProgramItem extends Item implements ItemColor {
     private final DResource resource;
 
-    public DataShardItem(List<DataShardItem> pList, DResource pResource) {
-        super(DRPropreties.MISC_PROPRETIES);
+    public ProgramItem(List<ProgramItem> pList, DResource pResource) {
+        super(new Properties().stacksTo(1));
         this.resource = pResource;
         pList.add(this);
     }
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (this.resource != null) {
-            if (Screen.hasShiftDown()) {
-                pTooltipComponents.add(Component.translatable("item.data_shard.tooltip").withStyle(ChatFormatting.GRAY)
-                        .append(Component.literal("[" + resource + "]")
-                                .withStyle(Style.EMPTY.withColor(this.resource.getResourceColor()))
-                        ));
+        if (Screen.hasShiftDown()) {
+            if (this.resource != null) {
+                pTooltipComponents.add(Component.translatable("item.program.tooltip").withStyle(ChatFormatting.GRAY).append(Component.literal(String.format("[%s.exe]", this.resource.getResourceName())).withStyle(Style.EMPTY.withColor(this.resource.getResourceColor()))));
             } else {
-                pTooltipComponents.add(Component.translatable("item.tooltip.shift").withStyle(DRStyles.PURPLE));
+                pTooltipComponents.add(Component.translatable("item.program.blank.tooltip").withStyle(ChatFormatting.GRAY));
             }
         } else {
-            if (Screen.hasShiftDown()) {
-                pTooltipComponents.add(Component.translatable("item.data_shard.blank.tooltip").withStyle(ChatFormatting.GRAY));
-            } else {
-                pTooltipComponents.add(Component.translatable("item.tooltip.shift").withStyle(DRStyles.PURPLE));
-            }
+            pTooltipComponents.add(Component.translatable("item.tooltip.shift").withStyle(DRStyles.PURPLE));
         }
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
@@ -60,13 +53,13 @@ public class DataShardItem extends Item implements ItemColor {
     }
 
     public String getResourceName() {
-        return this.resource != null ? this.resource.getResourceName() : "blank";
+        return this.resource != null ? this.resource.getResourceName() : "uninitialized";
     }
 
     @Override
-    public int getColor(ItemStack pItemStack, int i) {
+    public int getColor(ItemStack itemStack, int i) {
         if (this.resource != null) {
-            return i != 0 ? -1 : this.resource.getResourceColor();
+            return i != 1 ? -1 : this.resource.getResourceColor();
         } else {
             return -1;
         }

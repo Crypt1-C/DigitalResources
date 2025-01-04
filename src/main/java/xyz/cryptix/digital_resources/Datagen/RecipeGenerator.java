@@ -10,11 +10,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
-import xyz.cryptix.digital_resources.Common.item.ModuleItem;
+import xyz.cryptix.digital_resources.Common.item.ProgramItem;
 import xyz.cryptix.digital_resources.Registry.blocks.BlockRegistry;
 import xyz.cryptix.digital_resources.Registry.item.DataShardRegistry;
 import xyz.cryptix.digital_resources.Registry.item.ItemRegistry;
-import xyz.cryptix.digital_resources.Registry.item.ModuleRegistry;
+import xyz.cryptix.digital_resources.Registry.item.ProgramRegistry;
 import xyz.cryptix.digital_resources.Registry.item.UpgradeRegistry;
 
 import java.util.List;
@@ -38,6 +38,9 @@ public class RecipeGenerator extends RecipeProvider {
         // exonull block
         nineBlockStorageRecipes(consumer, RecipeCategory.MISC, ItemRegistry.EXONULL_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, BlockRegistry.EXONULL_BLOCK.get().asItem());
 
+        // exonull block
+        nineBlockStorageRecipes(consumer, RecipeCategory.MISC, ItemRegistry.LOGISTEEL_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, BlockRegistry.LOGISTEEL_BLOCK.get().asItem());
+
         // raw exonull block
         nineBlockStorageRecipes(consumer, RecipeCategory.MISC, ItemRegistry.RAW_EXONULL.get(), RecipeCategory.BUILDING_BLOCKS, BlockRegistry.RAW_EXONULL_BLOCK.get().asItem());
 
@@ -53,7 +56,7 @@ public class RecipeGenerator extends RecipeProvider {
         smeltingResultFromBase(consumer, ItemRegistry.ENERGEX_INGOT.get(), ItemRegistry.ENERGEX_BLEND.get());
 
         // Blank Module
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModuleRegistry.BLANK_MODULE.get(), 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ProgramRegistry.UNINITIALIZED_PROGRAM.get(), 1)
                 .define('#', ItemRegistry.EXONULL_INGOT.get())
                 .define('*', Items.GOLD_NUGGET)
                 .define('Q', Items.QUARTZ)
@@ -65,7 +68,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(consumer);
 
         // Modules recipes
-        ModuleRegistry.MODULES.stream().filter(moduleItem -> !moduleItem.equals(ModuleRegistry.BLANK_MODULE.get())).forEach(module -> moduleRecipe(consumer, module));
+        ProgramRegistry.PROGRAMS.stream().filter(programItem -> !programItem.equals(ProgramRegistry.UNINITIALIZED_PROGRAM.get())).forEach(module -> moduleRecipe(consumer, module));
 
         // Blank Upgrade
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, UpgradeRegistry.BLANK_UPGRADE.get(), 1)
@@ -89,13 +92,13 @@ public class RecipeGenerator extends RecipeProvider {
 
         // ENERGETIC BLEND
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemRegistry.ENERGEX_BLEND.get(), 3)
-                .requires(ItemRegistry.EXONULL_INGOT.get())
-                .requires(Items.GOLD_INGOT)
-                .requires(Items.COPPER_INGOT)
+                .requires(ItemRegistry.EXONULL_DUST.get())
+                .requires(ItemRegistry.GOLD_DUST.get())
+                .requires(ItemRegistry.COPPER_DUST.get())
                 .requires(Items.BLAZE_POWDER)
                 .requires(Items.GLOWSTONE_DUST)
                 .requires(Items.REDSTONE)
-                .unlockedBy("has_exonull", inventoryTrigger(ItemPredicate.Builder.item().of(ItemRegistry.EXONULL_INGOT.get()).build()))
+                .unlockedBy("has_exonull_dust", inventoryTrigger(ItemPredicate.Builder.item().of(ItemRegistry.EXONULL_DUST.get()).build()))
                 .save(consumer);
 
         // Missing Block
@@ -137,11 +140,11 @@ public class RecipeGenerator extends RecipeProvider {
         */
     }
 
-    private void moduleRecipe(Consumer<FinishedRecipe> consumer, ModuleItem pItem) {
+    private void moduleRecipe(Consumer<FinishedRecipe> consumer, ProgramItem pItem) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, pItem, 1)
-                .requires(ModuleRegistry.BLANK_MODULE.get())
+                .requires(ProgramRegistry.UNINITIALIZED_PROGRAM.get())
                 .requires(DataShardRegistry.getDataShardByResource(pItem.getResource()).get())
-                .unlockedBy("has_blank_module", inventoryTrigger(ItemPredicate.Builder.item().of(ModuleRegistry.BLANK_MODULE.get()).build()))
+                .unlockedBy("has_blank_module", inventoryTrigger(ItemPredicate.Builder.item().of(ProgramRegistry.UNINITIALIZED_PROGRAM.get()).build()))
                 .save(consumer);
     }
 

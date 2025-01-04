@@ -29,11 +29,9 @@ public class CreativeTabRegistry {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("item_group." + DigitalResources.MODID + ".data_shards"))
                     .icon(() -> new ItemStack(DataShardRegistry.BLANK_DATA_SHARD.get()))
-                    .displayItems((pParameters, pOutput) -> {
-                        DataShardRegistry.DATA_SHARDS_REGISTRY.getEntries().stream()
-                                .map(RegistryObject::get)
-                                .forEach(pOutput::accept);
-                    })
+                    .displayItems((pParameters, pOutput) -> DataShardRegistry.DATA_SHARDS_REGISTRY.getEntries().stream()
+                            .map(RegistryObject::get)
+                            .forEach(pOutput::accept))
                     .build()
     );
 
@@ -42,24 +40,20 @@ public class CreativeTabRegistry {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("item_group." + DigitalResources.MODID + ".upgrades"))
                     .icon(() -> new ItemStack(UpgradeRegistry.BLANK_UPGRADE.get()))
-                    .displayItems((pParameters, pOutput) -> {
-                        UpgradeRegistry.UPGRADES_REGISTRY.getEntries().stream()
-                                .map(RegistryObject::get)
-                                .forEach(pOutput::accept);
-                    })
+                    .displayItems((pParameters, pOutput) -> UpgradeRegistry.UPGRADES_REGISTRY.getEntries().stream()
+                            .map(RegistryObject::get)
+                            .forEach(pOutput::accept))
                     .build()
     );
 
     @SuppressWarnings("unused")
-    public static final RegistryObject<CreativeModeTab> MODULES_TAB = CREATIVE_TABS.register("modules",
+    public static final RegistryObject<CreativeModeTab> MODULES_TAB = CREATIVE_TABS.register("programs",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("item_group." + DigitalResources.MODID + ".modules"))
-                    .icon(() -> new ItemStack(ModuleRegistry.BLANK_MODULE.get()))
-                    .displayItems((pParameters, pOutput) -> {
-                        ModuleRegistry.MODULES_REGISTRY.getEntries().stream()
-                                .map(RegistryObject::get)
-                                .forEach(pOutput::accept);
-                    })
+                    .title(Component.translatable("item_group." + DigitalResources.MODID + ".programs"))
+                    .icon(() -> new ItemStack(ProgramRegistry.UNINITIALIZED_PROGRAM.get()))
+                    .displayItems((pParameters, pOutput) -> ProgramRegistry.PROGRAM_REGISTRY.getEntries().stream()
+                            .map(RegistryObject::get)
+                            .forEach(pOutput::accept))
                     .build()
     );
 

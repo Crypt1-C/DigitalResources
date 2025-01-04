@@ -27,12 +27,12 @@ public class ItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        // ingots
+        // Ingots
         addKey(ItemRegistry.LOGISTEEL_INGOT.get(), new ResourceLocation("forge", "ingots/logisteel"));
         addKey(ItemRegistry.EXONULL_INGOT.get(), new ResourceLocation("forge", "ingots/exonull"));
         addKey(ItemRegistry.ECLIPTIUM_INGOT.get(), new ResourceLocation("forge", "ingots/ecliptium"));
         addKey(ItemRegistry.ENERGEX_INGOT.get(), new ResourceLocation("forge", "ingots/energex"));
-        // storage blocks
+        // Storage blocks
         addKey(BlockRegistry.EXONULL_BLOCK.get().asItem(), new ResourceLocation("forge", "storage_blocks/exonull"));
         addKey(BlockRegistry.EXONULL_BLOCK.get().asItem(), new ResourceLocation("forge", "storage_blocks"));
         addKey(BlockRegistry.RAW_EXONULL_BLOCK.get().asItem(), new ResourceLocation("forge", "storage_blocks/raw_exonull"));
@@ -41,9 +41,16 @@ public class ItemTagGenerator extends ItemTagsProvider {
         addKey(BlockRegistry.ECLIPTIUM_BLOCK.get().asItem(), new ResourceLocation("forge", "storage_blocks"));
         addKey(BlockRegistry.ENERGEX_BLOCK.get().asItem(), new ResourceLocation("forge", "storage_blocks/energex"));
         addKey(BlockRegistry.ENERGEX_BLOCK.get().asItem(), new ResourceLocation("forge", "storage_blocks"));
+        addKey(BlockRegistry.LOGISTEEL_BLOCK.get().asItem(), new ResourceLocation("forge", "storage_blocks/logisteel"));
+        addKey(BlockRegistry.LOGISTEEL_BLOCK.get().asItem(), new ResourceLocation("forge", "storage_blocks"));
+        // Dusts
+        addKey(ItemRegistry.ENDER_PEARL_DUST.get(), new ResourceLocation("forge", "dusts/ender_pearl"));
+        addKey(ItemRegistry.GOLD_DUST.get(), new ResourceLocation("forge", "dusts/gold"));
+        addKey(ItemRegistry.COPPER_DUST.get(), new ResourceLocation("forge", "dusts/copper"));
+        addKey(ItemRegistry.LOGIC_BLEND.get(), new ResourceLocation("forge", "dusts/logisteel"));
+        addKey(ItemRegistry.EXONULL_DUST.get(), new ResourceLocation("forge", "dusts/exonull"));
         // other
         addKey(Items.CLAY_BALL, new ResourceLocation("forge", "clay"));
-        addKey(ItemRegistry.ENDER_PEARL_DUST.get(), new ResourceLocation("forge", "dusts/ender_pearl"));
     }
 
     private void addKey(Item pItem, ResourceLocation pResourceLocation) {

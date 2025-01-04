@@ -9,7 +9,7 @@ import org.apache.commons.lang3.text.WordUtils;
 import xyz.cryptix.digital_resources.DigitalResources;
 import xyz.cryptix.digital_resources.Registry.item.DataShardRegistry;
 import xyz.cryptix.digital_resources.Registry.item.ItemRegistry;
-import xyz.cryptix.digital_resources.Registry.item.ModuleRegistry;
+import xyz.cryptix.digital_resources.Registry.item.ProgramRegistry;
 import xyz.cryptix.digital_resources.Registry.item.UpgradeRegistry;
 
 import java.util.Objects;
@@ -49,27 +49,30 @@ public class LanguageGenerator extends LanguageProvider {
                 .map(ResourceLocation::getPath)
                 .forEach(path -> add(String.format("item.digital_resources.%s", path), WordUtils.capitalize(path.replace("_"," "))));
 
-        ModuleRegistry.MODULES_REGISTRY.getEntries().stream()
+        ProgramRegistry.PROGRAM_REGISTRY.getEntries().stream()
                 .map(RegistryObject::get)
                 .map(ForgeRegistries.ITEMS::getKey)
                 .filter(Objects::nonNull)
                 .map(ResourceLocation::getPath)
-                .forEach(path -> add(String.format("item.digital_resources.%s", path), WordUtils.capitalize(path.replace("_"," "))));
+                .forEach(path -> add(String.format("item.digital_resources.%s", path), String.format("[>] %s Execution Protocol", WordUtils.capitalize(path.replace("program", "").replace("_", " ")))));
 
         add("item_group.digital_resources.data_shards", "Digital Resources: Data Shards");
-        add("item_group.digital_resources.modules", "Digital Resources: Modules");
+        add("item_group.digital_resources.programs", "Digital Resources: Programs");
         add("item_group.digital_resources.upgrades", "Digital Resources: Upgrades");
         add("item_group.digital_resources.misc", "Digital Resources: Misc");
 
         add("item.tooltip.shift", "Press [Shift] For More Info");
 
-        add("item.data_shard.tooltip", "Contains Resource Data For: ");
-        add("item.module.tooltip", "Contains Resource Data For: ");
+        add("item.data_shard.tooltip", "Encodes Neuro-Syntactic Data For: ");
+        add("item.data_shard.blank.tooltip", "Uninitialized Data Shard");
+        add("item.program.blank.tooltip", "Offline Neural Routine");
+        add("item.program.tooltip", "Executes Neural Protocol: ");
 
-        add("item.upgrade.blank.tooltip", "Just a Blank Upgrade");
-        add("item.upgrade.speed.tooltip", "Upgrades Machine Speed By x2");
-        add("item.upgrade.stack.tooltip", "Upgrades Machine Output By x4");
-        add("item.upgrade.energy.tooltip", "Machine No Longer Requires Energy");
+        add("item.upgrade.blank.tooltip", "Unconfigured Upgrade Module");
+        add("item.upgrade.speed.tooltip", "Enhances Machine Efficiency: Speed x2");
+        add("item.upgrade.stack.tooltip", "Enhances Machine Efficiency: Output x4");
+        add("item.upgrade.energy.tooltip", "Enables Autonomous Operation: No Energy Required");
+
         add("item.digital_resources.nullium_ore.JEIdesc", "Can Only Be Found In The End");
         add("item.digital_resources.voidium_ingot.jei", "Obtained By Right Clicking Nullium Ingot On Bedrock");
 
